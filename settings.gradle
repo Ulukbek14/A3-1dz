@@ -1,0 +1,2 @@
+rootProject.name = "A3-1dz"
+include ':app'
