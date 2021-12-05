@@ -11,34 +11,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.a3_1dz.R;
 import com.example.a3_1dz.databinding.FragmentDetailBinding;
-
+import com.example.a3_1dz.ui.fragment.task.TaskViewModel;
 
 public class DetailFragment extends Fragment {
 
-    FragmentDetailBinding binding;
-    SharedViewModel viewModel;
+    private FragmentDetailBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        binding = FragmentDetailBinding.inflate(inflater,container,false);
+        binding = FragmentDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getDataInPosition();
-
+        initializationData();
     }
 
-    private void getDataInPosition() {
-        viewModel.onSetPost(viewModel.pos);
-        binding.tvTitle.setText(viewModel.list.get(viewModel.pos).getTitle());
-        binding.tvDescription.setText(viewModel.list.get(viewModel.pos).getDescription());
-        binding.iv.setImageResource(viewModel.list.get(viewModel.pos).getImage());
+    private void initializationData() {
+        TaskViewModel viewModel = new ViewModelProvider(requireActivity()).get(TaskViewModel.class);
+        viewModel.getSelected().observe(getViewLifecycleOwner(), taskModel -> {
+            binding.detailTvName.setText(taskModel.
+                    getName());
+            binding.detailTvDescription.setText(taskModel.
+                    getDescription());
+            binding.detailIv.setImageResource(taskModel.
+                    getImage());
+        });
     }
 }

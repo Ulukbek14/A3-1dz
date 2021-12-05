@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#191818"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.task.TaskFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn"
+        android:text="Заполнить"
+        android:layout_marginLeft="95dp"
+        android:layout_marginRight="95dp"
+        app:cornerRadius="100sp"
+        android:backgroundTint="@color/black"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/rv"
+       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+       tools:listitem="@layout/item_task"
+       android:visibility="gone"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+
+</FrameLayout>
